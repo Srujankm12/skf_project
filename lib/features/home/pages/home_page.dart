@@ -53,8 +53,16 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomHomePageCard(title: "Hello",),
-              CustomHomePageCard(title: "hii",),
+              CustomHomePageCard(
+                title: "Total Devices",
+                icon: Icons.electrical_services_rounded,
+                iconSize: 60,
+              ),
+              CustomHomePageCard(
+                title: "Active Devices",
+                icon: Icons.electric_bolt_rounded,
+                iconSize: 60,
+              ),
             ],
           ),
           SizedBox(
@@ -64,8 +72,16 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomHomePageCard(title: "l",),
-              CustomHomePageCard(title: "o",),
+              CustomHomePageCard(
+                title: "Recipe Temp",
+                icon: Icons.thermostat,
+                iconSize: 60,
+              ),
+              CustomHomePageCard(
+                title: "Status",
+                icon: Icons.done_all_rounded,
+                iconSize: 60,
+              ),
             ],
           ),
         ],
@@ -76,19 +92,78 @@ class _HomePageState extends State<HomePage> {
   Widget _lastSection() {
     return Expanded(
       child: Container(
-        margin:const EdgeInsets.only(top: 10),
-        decoration:const  BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+        margin: const EdgeInsets.only(top: 10),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade50,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
         ),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Column(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _bottomKeys(
+                  Icons.history, "History", Icons.arrow_forward_ios_rounded),
+              _bottomKeys(Icons.add_chart_rounded, "Data Graphs",
+                  Icons.arrow_forward_ios_rounded),
+              _bottomKeys(Icons.info, "Help and Support",
+                  Icons.arrow_forward_ios_rounded)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _bottomKeys(IconData leading, String title, IconData trailing) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 60,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade50,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            offset: const Offset(-4, 4),
+            blurRadius: 5,
+            spreadRadius: 1,
+          ),
+          const BoxShadow(
+            color: Colors.white,
+            offset: Offset(4, -4),
+            blurRadius: 5,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            
+            Row(
+              children: [
+                Icon(leading , color: Colors.grey,),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  title,
+                  style: GoogleFonts.nunito(
+                    color: Colors.grey,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            Icon(trailing , color: Colors.grey,)
           ],
         ),
       ),
